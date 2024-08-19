@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/head'); -%>
+  
+    <body>
+    <%- include('layouts/navbar'); -%>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Blog project</h1>
+                            <span class="subheading">israel reuven blog project</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+                     
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <% if (blogposts && blogposts.length > 0) { %>
+                        <% for(var i = 0; i < blogposts.length; i++) { %>
+                            <div class="post-preview">
+                                <a href="/post/<%= blogposts[i]._id %>">
+                                    <h2 class="post-title">
+                                        <%= blogposts[i].title %>
+                                    </h2>
+                                    <h3 class="post-subtitle">
+                                        <%-blogposts[i].body %>
+                                    </h3>
+                                </a>
+                                <p class="post-meta">
+                                    Post by
+                                    <a href="#">
+                                        <%= blogposts[i].userid.username %>
+                                    </a>
+                                    on  <%= new Date(blogposts[i].dataPosted).toDateString() %>
+                                </p>
+                            </div>
+                            <hr>
+                        <% } %>
+                    <% } else { %>
+                        <p>No blog posts found.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pager-->
+        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+
+        <%- include('layouts/footer'); -%>
+        <%- include('layouts/scripts'); -%>
+     
+    </body>
+</html>
